@@ -1,0 +1,90 @@
+:root {
+  color-scheme: dark;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #080b18;
+  color: #f4f7ff;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at 15% 10%, #273d89 0, transparent 27rem),
+    radial-gradient(circle at 85% 90%, #6c1f60 0, transparent 30rem),
+    #080b18;
+}
+
+.game-shell { width: min(92vw, 780px); padding: 2.5rem 0; text-align: center; }
+header { margin-bottom: 1.2rem; }
+.eyebrow { margin: 0 0 .4rem; color: #77e7ff; font-size: .75rem; font-weight: 800; letter-spacing: .16em; }
+h1 { margin: 0; font-size: clamp(2.1rem, 6vw, 4rem); line-height: 1; letter-spacing: -.07em; }
+.instructions, .tip { color: #bbc5e8; }
+.instructions { margin: .85rem auto 0; }
+
+kbd {
+  padding: .1rem .35rem;
+  border: 1px solid #51608f;
+  border-bottom-width: 3px;
+  border-radius: 4px;
+  background: #161d38;
+  color: #fff;
+  font-size: .8em;
+}
+
+.game-card {
+  overflow: hidden;
+  border: 1px solid rgb(143 166 255 / 35%);
+  border-radius: 20px;
+  background: rgb(9 14 34 / 82%);
+  box-shadow: 0 22px 70px rgb(0 0 0 / 45%);
+}
+
+.scoreboard { display: flex; justify-content: space-between; padding: 1rem 1.3rem; background: rgb(32 42 82 / 65%); text-align: left; }
+.scoreboard div { display: grid; gap: .1rem; }
+.scoreboard span { color: #a9b8e9; font-size: .75rem; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; }
+.scoreboard strong { font-size: 1.5rem; font-variant-numeric: tabular-nums; }
+
+.canvas-wrap { position: relative; aspect-ratio: 720 / 500; }
+canvas { display: block; width: 100%; height: 100%; background: #090d25; touch-action: none; }
+
+.message {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  gap: .75rem;
+  padding: 2rem;
+  background: linear-gradient(rgb(4 7 23 / 25%), rgb(4 7 23 / 78%));
+}
+.message[hidden] { display: none; }
+.message h2 { margin: 0; font-size: clamp(2rem, 7vw, 3.7rem); letter-spacing: -.06em; }
+.message p { max-width: 28rem; margin: 0 auto; color: #d5ddfa; }
+
+button {
+  justify-self: center;
+  border: 0;
+  border-radius: 999px;
+  padding: .7rem 1.25rem;
+  background: linear-gradient(135deg, #55e6ff, #8c7bff);
+  color: #071020;
+  font: inherit;
+  font-weight: 850;
+  cursor: pointer;
+  transition: transform .15s ease, filter .15s ease;
+}
+button:hover:not(:disabled) { transform: translateY(-2px); filter: brightness(1.1); }
+button:disabled { cursor: not-allowed; opacity: .45; }
+.controls { display: flex; justify-content: center; gap: .7rem; padding: 1rem; }
+.controls button:last-child { background: #263156; color: #f4f7ff; }
+.tip { margin: 1rem 0 0; font-size: .9rem; }
+
+@media (max-width: 460px) {
+  .game-shell { width: 100%; padding: 1.3rem .65rem; }
+  .instructions { font-size: .92rem; }
+  .game-card { border-radius: 14px; }
+}
