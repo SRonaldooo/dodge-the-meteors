@@ -3,45 +3,82 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Dodge the falling meteors and beat your high score."
-    />
-    <title>Dodge the Meteors</title>
+    <meta name="theme-color" content="#080b18" />
+    <meta name="description" content="Answer the distress call. Survive the Starfall and save the last outpost." />
+    <title>Starfall: Last Light</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <main class="game-shell">
-      <header>
-        <p class="eyebrow">BROWSER SURVIVAL GAME</p>
-        <h1>Dodge the Meteors</h1>
-        <p class="instructions">Move with <kbd>WASD</kbd> or <kbd>← ↑ ↓ →</kbd>. Survive as long as you can.</p>
+      <header class="masthead">
+        <div class="brand-mark" aria-hidden="true">✦</div>
+        <div>
+          <p class="eyebrow">NOVA FRONTIER · FLIGHT LOG 07</p>
+          <h1>STARFALL <span>LAST LIGHT</span></h1>
+        </div>
       </header>
 
-      <section class="game-card" aria-label="Dodge the Meteors game">
-        <div class="scoreboard" aria-live="polite">
-          <div><span>Score</span><strong id="score">0</strong></div>
-          <div><span>Best</span><strong id="best-score">0</strong></div>
+      <p class="story"><span class="signal-dot"></span> DISTRESS SIGNAL: <strong>OUTPOST LUMA</strong> · “We are not alone out here.”</p>
+
+      <section class="game-card" aria-label="Starfall: Last Light arcade game">
+        <div class="hud" aria-live="polite">
+          <div class="stat"><span>Flight score</span><strong id="score">0</strong></div>
+          <div class="stat"><span>Personal best</span><strong id="best-score">0</strong></div>
+          <div class="stat"><span>Sector</span><strong id="wave">01</strong></div>
+          <div class="stat hull-stat"><span>Hull integrity</span><strong id="hull">♥ ♥ ♥</strong></div>
         </div>
 
         <div class="canvas-wrap">
-          <canvas id="game" width="720" height="500" aria-label="Game area"></canvas>
+          <canvas id="game" width="720" height="500" aria-label="Fly through the asteroid field, collect supplies, and avoid enemy craft"></canvas>
+
           <div id="message" class="message" aria-live="assertive">
-            <h2>Ready?</h2>
-            <p>Dodge the meteors. The sky will not stay friendly for long.</p>
-            <button id="start-button" type="button">Start game</button>
+            <p class="message-kicker">A SIGNAL THROUGH THE STATIC</p>
+            <h2>One pilot.<br /><em>One last light.</em></h2>
+            <p id="message-text">Outpost Luma has gone dark. Fly into the Starfall, recover its black box, and bring whoever is left home.</p>
+            <label class="difficulty-label" for="difficulty">Flight protocol</label>
+            <select id="difficulty">
+              <option value="cadet">Cadet · room to breathe</option>
+              <option value="pilot" selected>Pilot · standard patrol</option>
+              <option value="ace">Ace · no second chances</option>
+            </select>
+            <button id="start-button" class="primary-button" type="button">Launch mission</button>
+            <span class="menu-hint">ARROWS / WASD to fly · SPACE to pulse · P to pause</span>
+          </div>
+
+          <div id="toast" class="toast" aria-live="polite"></div>
+
+          <div class="touch-controls" aria-label="Touch flight controls">
+            <div class="dpad" aria-label="Movement">
+              <button type="button" data-key="ArrowUp" class="up" aria-label="Move up">▲</button>
+              <button type="button" data-key="ArrowLeft" class="left" aria-label="Move left">◀</button>
+              <button type="button" data-key="ArrowDown" class="down" aria-label="Move down">▼</button>
+              <button type="button" data-key="ArrowRight" class="right" aria-label="Move right">▶</button>
+            </div>
+            <button type="button" id="touch-pulse" class="pulse-touch" aria-label="Use pulse">
+              <span>✦</span><strong>PULSE</strong><small id="touch-pulse-label">35%</small>
+            </button>
           </div>
         </div>
 
-        <div class="controls">
-          <button id="pause-button" type="button" disabled>Pause</button>
-          <button id="restart-button" type="button">Restart</button>
+        <div class="utility-row">
+          <div class="pulse-readout">
+            <span class="pulse-icon" aria-hidden="true">✦</span>
+            <div class="pulse-copy"><strong>STAR PULSE</strong><span id="pulse-label">Charging · 35%</span></div>
+            <div id="pulse-meter" class="meter" role="progressbar" aria-label="Star pulse charge" aria-valuemin="0" aria-valuemax="100" aria-valuenow="35"><span id="pulse-fill"></span></div>
+          </div>
+          <div class="utility-buttons">
+            <button id="sound-button" class="secondary-button" type="button" aria-pressed="true">♫ Sound on</button>
+            <button id="pause-button" class="secondary-button" type="button" disabled>Pause</button>
+            <button id="restart-button" class="secondary-button" type="button">Restart</button>
+          </div>
         </div>
       </section>
 
-      <p class="tip">Tip: move diagonally to make tight escapes.</p>
+      <footer class="field-guide">
+        <p><span class="guide-key">✧</span> Catch supply flares: <b>shield</b>, <b>repair</b>, or <b>pulse charge</b>.</p>
+        <p><span class="guide-key">!</span> A near miss earns bonus points. Your pulse clears nearby threats.</p>
+      </footer>
     </main>
-
     <script src="script.js"></script>
   </body>
 </html>
